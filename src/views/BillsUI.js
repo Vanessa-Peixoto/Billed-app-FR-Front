@@ -20,7 +20,12 @@ const row = (bill) => {
   }
 
 const rows = (data) => {
-  return (data && data.length) ? data.map(bill => row(bill)).join("") : ""
+  if (!data || data.length === 0) return ""
+  //localcompare compare date as a string
+  const antiChrono = (a, b) => b.date.localeCompare(a.date)
+  //sort dates
+  const dates = [...data].sort(antiChrono)
+  return dates.map(bill => row(bill)).join("")
 }
 
 export default ({ data: bills, loading, error }) => {
