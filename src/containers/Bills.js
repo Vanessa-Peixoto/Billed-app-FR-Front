@@ -52,8 +52,9 @@ export default class {
               }
             }
           })
-           // Trier les notes de frais par date décroissante
+           //sorts expense report in descending order
            .sort((a, b) => new Date(b.date) - new Date(a.date));
+           
           console.log('length', bills.length)
         return bills
       })
