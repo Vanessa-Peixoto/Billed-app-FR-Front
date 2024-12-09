@@ -131,10 +131,11 @@ export default class {
   }
 
   handleShowTickets(e, bills, index) {
-
+    //Select the arrow icon and the container associated with the given index
     const arrowIcon = $(`#arrow-icon${index}`);
     const statusContainer = $(`#status-bills-container${index}`);
 
+    //Checks if the container already contains content
     const isExpanded = statusContainer.html().trim() !== "";
 
     if(isExpanded) {
@@ -145,13 +146,13 @@ export default class {
       statusContainer.html(cards(filteredBills(bills, getStatus(index))))
     }
 
+    //Adds an event handler to each invoice for editing
     bills.forEach(bill => {
+      // Remove any existing `click` event handlers from this element
       $(`#open-bill${bill.id}`).off('click');
       $(`#open-bill${bill.id}`).click((e) => this.handleEditTicket(e, bill, bills))
     })
-
     return bills
-
   }
 
   getBillsAllUsers = () => {
